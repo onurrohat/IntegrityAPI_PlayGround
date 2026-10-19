@@ -11,6 +11,10 @@ val localProperties = Properties().apply {
     if (f.exists()) load(FileInputStream(f))
 }
 val cloudProjectNumber: String = localProperties.getProperty("integrity.cloudProjectNumber") ?: "0"
+// Base URL of the verification server, e.g. the Cloud Run service URL. Required: without it
+// the app would have no server to talk to, so the build fails instead of shipping a dead URL.
+val serverBaseUrl: String = localProperties.getProperty("integrity.serverBaseUrl")?.trimEnd('/')
+    ?: throw GradleException("Set integrity.serverBaseUrl in local.properties (e.g. https://<service>.run.app)")
 
 android {
     namespace = "com.onuroktayr.integrity"
@@ -24,6 +28,7 @@ android {
         versionName = "1.4"
 
         buildConfigField("long", "CLOUD_PROJECT_NUMBER", "${cloudProjectNumber}L")
+        buildConfigField("String", "SERVER_BASE_URL", "\"$serverBaseUrl\"")
     }
 
     signingConfigs {

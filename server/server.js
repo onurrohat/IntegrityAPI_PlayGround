@@ -17,8 +17,13 @@ const { execSync } = require("child_process");
 
 const PORT = process.env.PORT || 8787;
 const PACKAGE_NAME = "com.onuroktayr.integrity";
-const SERVICE_ACCOUNT =
-  "play-integrity-decoder@project-5f11d5ae-7eff-478e-bc2.iam.gserviceaccount.com";
+// Email of the service account that is impersonated to decode tokens, e.g.
+// play-integrity-decoder@<project-id>.iam.gserviceaccount.com. Required.
+const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT;
+if (!SERVICE_ACCOUNT) {
+  console.error("SERVICE_ACCOUNT environment variable is not set (play-integrity-decoder@<project-id>.iam.gserviceaccount.com)");
+  process.exit(1);
+}
 
 // Optional hardening settings - none of them is required; if one is left empty,
 // the related check is skipped (the default behaviour stays unchanged).
@@ -29,9 +34,8 @@ const MIN_SDK_VERSION = process.env.MIN_SDK_VERSION ? Number(process.env.MIN_SDK
 const app = express();
 app.use(express.json());
 
-const GCLOUD_BIN =
-  process.env.GCLOUD_BIN ||
-  "C:\\Users\\onuro\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin\\gcloud.cmd";
+// gcloud executable used for local development; override with GCLOUD_BIN if it is not on PATH.
+const GCLOUD_BIN = process.env.GCLOUD_BIN || "gcloud";
 
 // K_SERVICE is set automatically in the Cloud Run runtime, but not in local development.
 const ON_CLOUD_RUN = !!process.env.K_SERVICE;

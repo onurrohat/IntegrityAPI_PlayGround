@@ -36,9 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     private val tag = "IntegrityTest"
 
-    // Production verification server on Google Cloud Run (always-on, fixed URL, independent of any local machine).
-    // For local development against the server running on this machine use "http://10.0.2.2:8787" (emulator).
-    private val serverBaseUrl = "https://integrity-server-271397153895.europe-west1.run.app"
+    // Verification server base URL, set via local.properties (integrity.serverBaseUrl) at build time.
+    private val serverBaseUrl = BuildConfig.SERVER_BASE_URL
     private val challengeServerUrl = "$serverBaseUrl/challenge"
     private val verifyServerUrl = "$serverBaseUrl/verify"
 
