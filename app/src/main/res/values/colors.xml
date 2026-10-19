@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_screen">#F3F4F6</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_primary">#1C1E21</color>
+    <color name="text_secondary">#6B7280</color>
+
+    <color name="trust_green">#2E7D32</color>
+    <color name="trust_green_bg">#E8F5E9</color>
+    <color name="trust_amber">#B45309</color>
+    <color name="trust_amber_bg">#FEF3C7</color>
+    <color name="trust_red">#C62828</color>
+    <color name="trust_red_bg">#FFEBEE</color>
+    <color name="trust_neutral">#4B5563</color>
+    <color name="trust_neutral_bg">#E5E7EB</color>
+</resources>

@@ -1,0 +1,24 @@
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+/.idea/
+.DS_Store
+build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.keystore
+*.jks
+
+# Node (verification server)
+node_modules/
+npm-debug.log
+.env
+
+# Documentation, reports and notes (kept out of the repository)
+docs/
+
+# Personal Claude Code settings
+.claude/settings.local.json
